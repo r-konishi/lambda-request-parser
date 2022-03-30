@@ -1,6 +1,10 @@
 package parser
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	validator "github.com/go-playground/validator/v10"
+)
 
 type StringNumber int64
 
@@ -28,4 +32,15 @@ func QueryStringParametersToStruct(params *map[string]string, v interface{}) err
 		return nil
 	}
 	return RequestBodyToStruct(string(jsonStr), &v)
+}
+
+func GetValidationErrors(v interface{}) validator.ValidationErrors {
+	valor := validator.New()
+
+	err := valor.Struct(v)
+	if err == nil {
+		return nil
+	}
+
+	return err.(validator.ValidationErrors)
 }
