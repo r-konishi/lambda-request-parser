@@ -1,7 +1,7 @@
 # lambda-request-parser
 
 - Convert the lambda request (QueryStringParameters or RequestBody) to a go struct.
-- Provides easy validation with tags.
+- Provides easy validation with tags. (use [go-playground/validator](https://github.com/go-playground/validator))
 
 ## Installation
 
